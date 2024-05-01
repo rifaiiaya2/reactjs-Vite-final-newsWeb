@@ -1,31 +1,27 @@
 import { useState } from "react";
+import AuthenticationModal from "../../molecules/authModal/AuthenticationModal";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import GradientText from "../GradientText";
-import LoginModal from "../../molecules/authModals/LoginModal";
-import SignUpModal from "../../molecules/authModals/SignUpModal";
 import "./Navbar.css";
+
+type AuthFormType = "login" | "signup";
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [authForm, setAuthForm] = useState<AuthFormType>("login");
 
-  const toggleLoginModal = () => {
-    setShowLoginModal(!showLoginModal);
+  const toggleModal = (formType: AuthFormType) => {
+    setShowModal(!showModal);
+    setAuthForm(formType);
   };
-  const toggleSignUpModal = () => {
-    setShowSignUpModal(!showSignUpModal);
-  };
+
   const handleMenu = () => {
     setMenu(!menu);
   };
-  const handleMobileLogin = () => {
+  const handleMobileAuth = (formType: AuthFormType) => {
     setMenu(false);
-    setShowLoginModal(true);
-  };
-  const handleMobileSignUp = () => {
-    setMenu(false);
-    setShowSignUpModal(true);
+    toggleModal(formType);
   };
   return (
     <div className="nav-container">
@@ -38,10 +34,16 @@ const Navbar = () => {
             ></GradientText>
           </div>
           <nav className="nav-sign-container">
-            <button onClick={toggleLoginModal} className="btn-sign-up-in">
+            <button
+              onClick={() => toggleModal("login")}
+              className="btn-sign-up-in"
+            >
               Sign-In
             </button>
-            <button onClick={toggleSignUpModal} className="btn-sign-up-in">
+            <button
+              onClick={() => toggleModal("signup")}
+              className="btn-sign-up-in"
+            >
               {" "}
               Sign-Up
             </button>
@@ -59,17 +61,27 @@ const Navbar = () => {
             menu ? "translate-x-0" : "translate-x-full"
           } mobile-menu-container`}
         >
-          <button onClick={handleMobileLogin} className=" btn-sign-up-in">
+          <button
+            onClick={() => handleMobileAuth("login")}
+            className=" btn-sign-up-in"
+          >
             Sign-In
           </button>
           <hr className="mobile-separate-line" />
-          <button onClick={handleMobileSignUp} className=" btn-sign-up-in">
+          <button
+            onClick={() => handleMobileAuth("signup")}
+            className=" btn-sign-up-in"
+          >
             Sign-Up
           </button>
         </div>
       </div>
-      {showLoginModal && <LoginModal closeModal={toggleLoginModal} />}
-      {showSignUpModal && <SignUpModal closeModal={toggleSignUpModal} />}
+      {showModal && (
+        <AuthenticationModal
+          formType={authForm}
+          closeModal={() => setShowModal(false)}
+        />
+      )}
     </div>
   );
 };
