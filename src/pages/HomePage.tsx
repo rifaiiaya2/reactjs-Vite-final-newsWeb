@@ -2,7 +2,7 @@ import Navbar from "../components/atoms/navbar/Navbar";
 import HomeCarousel from "../components/atoms/carousel/HomeCarousel";
 import Footer from "../components/atoms/footer/Footer";
 
-function HomePage() {
+const HomePage = () => {
   return (
     <>
       <Navbar />
@@ -11,6 +11,6 @@ function HomePage() {
       <Footer />
     </>
   );
-}
+};
 
 export default HomePage;

@@ -14,6 +14,7 @@ const InputText = ({
   name,
   type = "text",
   placeholder,
+  ...props
 }: IFormikTextInputProps) => {
   return (
     <div className="flex items-center bg-white shadow-lg rounded-lg my-2 mx-8 p-2">
@@ -24,6 +25,7 @@ const InputText = ({
         type={type}
         placeholder={placeholder}
         className="flex-1 outline-none"
+        {...props}
       />
       <ErrorMessage
         name={name}

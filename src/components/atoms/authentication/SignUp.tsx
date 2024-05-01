@@ -1,4 +1,4 @@
-import { Formik, Form } from "formik";
+import { Formik, Form, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import InputText from "../InputText";
 import GradientText from "../GradientText";
@@ -6,9 +6,18 @@ import { MdOutlineAttachEmail } from "react-icons/md";
 import { TbLogin2, TbPasswordUser } from "react-icons/tb";
 import { FaUserEdit } from "react-icons/fa";
 import "./authentication.css";
+import { signupUser } from "../../../services/authServices";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setAuthToken } from "../../../redux/slices/authSlice";
 
 interface ISignUpProps {
   onToggle: () => void;
+}
+interface ISIgnUpValues {
+  username: string;
+  email: string;
+  password: string;
 }
 const validationSchema = Yup.object({
   username: Yup.string().required("Required"),
@@ -19,58 +28,85 @@ const validationSchema = Yup.object({
 });
 
 const SignUp = ({ onToggle }: ISignUpProps) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleSignUp = async (
+    values: ISIgnUpValues,
+    { setSubmitting }: FormikHelpers<ISIgnUpValues>
+  ) => {
+    try {
+      const response = await signupUser(values);
+      dispatch(
+        setAuthToken({
+          accessToken: response.accessToken,
+          refreshToken: response.refreshToken,
+        })
+      );
+      navigate("/news");
+      setSubmitting(false);
+    } catch (error) {
+      console.error("SignUp error:", error);
+
+      setSubmitting(false);
+    }
+  };
   return (
     <div className="auth-container">
       <div className="formik-container">
         <Formik
-          initialValues={{ email: "", password: "" }}
+          initialValues={{ username: "", email: "", password: "" }}
           validationSchema={validationSchema}
-          onSubmit={(values) => {
-            console.log(values);
-          }}
+          onSubmit={handleSignUp}
         >
-          <Form className="form-style">
-            <GradientText
-              text="Create an account"
-              className="gradient-text-style"
-            ></GradientText>
-            <InputText
-              name="email"
-              type="email"
-              placeholder="Enter your Email"
-              Icon={MdOutlineAttachEmail}
-            />
-            <InputText
-              name="username"
-              type="name"
-              placeholder="Username"
-              Icon={FaUserEdit}
-            />
+          {({ isSubmitting }) => (
+            <Form className="form-style">
+              <GradientText
+                text="Create an account"
+                className="gradient-text-style"
+              ></GradientText>
+              <InputText
+                name="email"
+                type="email"
+                placeholder="Enter your Email"
+                Icon={MdOutlineAttachEmail}
+              />
+              <InputText
+                name="username"
+                type="name"
+                placeholder="Username"
+                Icon={FaUserEdit}
+              />
 
-            <InputText
-              name="password"
-              type="password"
-              placeholder="Enter Your Password"
-              Icon={TbPasswordUser}
-            />
-            <button type="submit" className="submit-btn">
-              SignUp
-              <TbLogin2 size={22} className="ml-1" />
-            </button>
-            <p className="text-style">
-              Already Have an Account?
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onToggle();
-                }}
-                className="toggle-btn"
+              <InputText
+                name="password"
+                type="password"
+                placeholder="Enter Your Password"
+                Icon={TbPasswordUser}
+              />
+              <button
+                type="submit"
+                className="submit-btn"
+                disabled={isSubmitting}
               >
-                Sign-In
-              </a>
-            </p>
-          </Form>
+                {isSubmitting ? "SignUp..." : "SignUp"}
+
+                <TbLogin2 size={22} />
+              </button>
+              <p className="text-style">
+                Already Have an Account?
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onToggle();
+                  }}
+                  className="toggle-btn"
+                >
+                  Sign-In
+                </a>
+              </p>
+            </Form>
+          )}
         </Formik>
       </div>
     </div>

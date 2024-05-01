@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthenticationModal from "../../molecules/authModal/AuthenticationModal";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
@@ -10,7 +11,7 @@ const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [authForm, setAuthForm] = useState<AuthFormType>("login");
-
+  const navigate = useNavigate();
   const toggleModal = (formType: AuthFormType) => {
     setShowModal(!showModal);
     setAuthForm(formType);
@@ -34,6 +35,12 @@ const Navbar = () => {
             ></GradientText>
           </div>
           <nav className="nav-sign-container">
+            <button
+              onClick={() => navigate("/news")}
+              className="btn-sign-up-in"
+            >
+              News
+            </button>
             <button
               onClick={() => toggleModal("login")}
               className="btn-sign-up-in"
