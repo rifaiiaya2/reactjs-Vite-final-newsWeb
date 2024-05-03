@@ -39,7 +39,11 @@ const HomeCarousel = () => {
             key={idx}
             className={idx === imageIndex ? "slide activeSlide" : "slide"}
           >
-            <img src={imgSrc} alt={`Slide ${idx}`} />
+            <img
+              src={imgSrc}
+              alt={`Slide ${idx}`}
+              className="w-full h-auto md:h-80 lg:h-[80vh] object-cover"
+            />
           </div>
         ))}
       </Slider>

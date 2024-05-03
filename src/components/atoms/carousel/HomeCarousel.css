@@ -1,5 +1,5 @@
 .carousel-container {
-  overflow-x: hidden;
+  @apply overflow-hidden;
 }
 .carousel-container .slide img {
   width: 100%;

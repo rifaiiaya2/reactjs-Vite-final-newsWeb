@@ -30,7 +30,7 @@ const Navbar = () => {
         <div className="nav-window-container">
           <div className="gradient-nav-text-container">
             <GradientText
-              text="Latest Word News"
+              text="Latest World News"
               className="gradient-nav-text"
             ></GradientText>
           </div>
@@ -68,6 +68,10 @@ const Navbar = () => {
             menu ? "translate-x-0" : "translate-x-full"
           } mobile-menu-container`}
         >
+          <button onClick={() => navigate("/news")} className="btn-sign-up-in">
+            News
+          </button>
+          <hr className="mobile-separate-line" />
           <button
             onClick={() => handleMobileAuth("login")}
             className=" btn-sign-up-in"

@@ -1,8 +1,7 @@
-// ProtectedRoute.tsx
 import React from "react";
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store/store"; // Adjust the import path according to your project structure
+import { RootState } from "../../../redux/store/store";
 import { toast, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

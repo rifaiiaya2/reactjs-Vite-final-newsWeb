@@ -1,0 +1,15 @@
+.card-container {
+  @apply max-w-xs rounded overflow-hidden shadow-lg bg-white border border-gray-200 m-2;
+}
+.title-container {
+  @apply px-4 py-4;
+}
+.title-style {
+  @apply font-bold text-lg px-4 mb-1;
+}
+.details-btn-container {
+  @apply flex items-center px-4 py-2;
+}
+.btn-style {
+  @apply text-black text-lg font-bold p-4 rounded;
+}

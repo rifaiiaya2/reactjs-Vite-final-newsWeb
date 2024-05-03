@@ -26,7 +26,7 @@ const Footer = () => {
       <div className="footer-text-container ">
         <GradientText
           className="footer-text"
-          text="Latest Word News..."
+          text="Latest World News..."
         ></GradientText>
       </div>
     </div>

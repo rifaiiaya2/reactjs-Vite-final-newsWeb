@@ -1,0 +1,34 @@
+.modal-container {
+  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4;
+}
+.modal-content {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.news-title {
+  @apply text-2xl font-sans pb-4;
+}
+.country-container {
+  @apply flex items-center px-4 py-2 pt-2;
+}
+.country-name {
+  @apply text-2xl text-black text-center;
+}
+.news-desc {
+  @apply text-xl text-black font-medium leading-10;
+}
+.pub-date-icon-container {
+  @apply flex items-center px-4 py-2 pt-6;
+}
+.pub-date {
+  @apply text-xl font-mono p-2;
+}
+.source-container {
+  @apply flex items-center px-4 py-2 pt-2;
+}
+.source-url {
+  @apply text-blue-700 font-sans underline ml-5;
+}
+.close-btn {
+  @apply w-20 font-bold text-lg flex justify-center bg-red-600 text-white p-2 rounded-lg hover:bg-brightColor;
+}
