@@ -106,6 +106,17 @@ const NewsPage = () => {
           />
         ))}
       </div>
+      {hasMore && (
+        <button
+          onClick={fetchPosts}
+          disabled={isLoading}
+          className={`mt-4 mx-auto bg-brightColor hover:bg-orange-600 text-white font-bold py-2 px-4 rounded ${
+            isLoading ? "opacity-50" : ""
+          }`}
+        >
+          {isLoading ? "Loading..." : "Load More"}
+        </button>
+      )}
       <NewsModal
         isOpen={isModalOpen}
         onClose={closeModal}
