@@ -43,4 +43,4 @@ To get started with the World News Site:
 1. Clone the repository to your local machine: <https://github.com/rifaiiaya2/reactjs-Vite-final-newsWeb>
 2. Install dependencies with `npm install`.
 3. Start the app with `npm run dev`
-4. Deployment Link: https://663631278807c0f158abd7bf--enchanting-ganache-7955ae.netlify.app/
+4. Deployment Link: https://latestworldnews.netlify.app/
