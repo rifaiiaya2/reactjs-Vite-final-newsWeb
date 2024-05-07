@@ -11,6 +11,7 @@ const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [authForm, setAuthForm] = useState<AuthFormType>("login");
+
   const navigate = useNavigate();
   const toggleModal = (formType: AuthFormType) => {
     setShowModal(!showModal);

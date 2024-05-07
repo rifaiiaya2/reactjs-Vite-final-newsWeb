@@ -25,7 +25,7 @@ const NewsPage = () => {
 
   const authLogout = useAuthLogout();
 
-  const fetchPosts = async () => {
+  const fetchPosts: () => void = async () => {
     if (isFetching && isLoading && !hasMore) {
       return;
     }

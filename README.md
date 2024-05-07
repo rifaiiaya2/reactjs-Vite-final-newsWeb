@@ -40,6 +40,6 @@ Welcome to the Latest World News site
 
 To get started with the World News Site:
 
-1. Clone the repository to your local machine: https://github.com/rifaiiaya2/reactjs-Vite-final-newsWeb
+1. Clone the repository to your local machine: <https://github.com/rifaiiaya2/reactjs-Vite-final-newsWeb>
 2. Install dependencies with `npm install`.
 3. Start the app with `npm run dev`

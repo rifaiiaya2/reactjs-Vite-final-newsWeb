@@ -38,6 +38,31 @@ export const loginUser = async (
     }
   }
 };
+// export const signupUser = async (
+//   credentials: SignUpCredentials
+// ): Promise<AuthResponse> => {
+//   try {
+//     const response = await axios.post<AuthResponse>(
+//       `${API_URL}/signup`,
+//       credentials,
+//       {
+//         headers: { "Content-Type": "application/json" },
+//       }
+//     );
+
+//     if (response.status === 200) {
+//       return response.data;
+//     } else {
+//       throw new Error("Failed to sign up");
+//     }
+//   } catch (error) {
+//     if (axios.isAxiosError(error)) {
+//       throw error;
+//     } else {
+//       throw new Error("An unexpected error occurred");
+//     }
+//   }
+// };
 export const signupUser = async (
   credentials: SignUpCredentials
 ): Promise<AuthResponse> => {
@@ -50,10 +75,10 @@ export const signupUser = async (
       }
     );
 
-    if (response.status === 200) {
+    if (response.status === 201) {
       return response.data;
     } else {
-      throw new Error("Failed to sign up");
+      throw new Error("Failed to sign up: Unexpected status code");
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {
