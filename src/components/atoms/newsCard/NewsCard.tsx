@@ -13,7 +13,7 @@ const NewsCard = ({ news, onDetailsClick }: INewsCardProps) => {
   const imageUrl = news.image_url ? news.image_url : NoImage;
   return (
     <div className="card-container">
-      <img className="w-full h-60 rounded-t" src={imageUrl} alt={news.title} />
+      <img className="news-img" src={imageUrl} alt={news.title} />
       <div className="title-container">
         <div className="title-style">
           <GradientText text={news.title} />

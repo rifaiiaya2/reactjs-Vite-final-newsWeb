@@ -6,6 +6,7 @@ import ProtectedRoute from "./components/atoms/authentication/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
 
 const App = () => {
+  console.log(import.meta.env.VITE_API_KEY);
   return (
     <BrowserRouter>
       <ToastContainer limit={1} />

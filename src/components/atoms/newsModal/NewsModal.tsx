@@ -10,7 +10,7 @@ const NewsModal = ({ isOpen, onClose, news }: INewsModalProps) => {
   const sourceIcon = news.source_icon ? news.source_icon : UrlImg;
   return (
     <div className="modal-container">
-      <div className="bg-white p-4 rounded-lg max-w-lg w-full modal-content">
+      <div className="modal-content">
         <GradientText text={news.title} className="news-title"></GradientText>
         <div className="country-container">
           <TbWorldPin size={32} className="mr-2 text-red-600" />

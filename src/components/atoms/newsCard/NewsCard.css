@@ -1,6 +1,9 @@
 .card-container {
   @apply max-w-xs rounded overflow-hidden shadow-lg bg-white border border-gray-200 m-2;
 }
+.news-img {
+  @apply w-full h-60 rounded-t;
+}
 .title-container {
   @apply px-4 py-4;
 }

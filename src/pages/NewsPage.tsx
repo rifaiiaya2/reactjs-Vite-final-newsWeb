@@ -7,12 +7,12 @@ import {
   getRefreshToken,
   saveAccessToken,
 } from "../services/tokenServices";
-import { API_URL } from "../apiUrl";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Footer from "../components/atoms/footer/Footer";
 import storage from "redux-persist/lib/storage";
 import { News } from "../utils/newsType";
 import NewsModal from "../components/atoms/newsModal/NewsModal";
+import { apiURL } from "../utils/apiURL";
 
 const NewsPage = () => {
   const [newsData, setNewsData] = useState<News[]>([]);
@@ -25,7 +25,7 @@ const NewsPage = () => {
 
   const authLogout = useAuthLogout();
 
-  const fetchPosts: () => void = async () => {
+  const fetchPosts = useCallback(async () => {
     if (isFetching && isLoading && !hasMore) {
       return;
     }
@@ -34,7 +34,7 @@ const NewsPage = () => {
     try {
       const accessToken = getAccessToken();
       const response = await axios.get(
-        `${API_URL}/posts?page=${page}&pageSize=10`,
+        `${apiURL}/posts?page=${page}&pageSize=10`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -52,7 +52,7 @@ const NewsPage = () => {
       if (error) {
         try {
           const refreshToken = getRefreshToken();
-          const refreshResponse = await axios.post(`${API_URL}/refresh-token`, {
+          const refreshResponse = await axios.post(`${apiURL}/refresh-token`, {
             refreshToken: refreshToken,
           });
           const newAccessToken = refreshResponse.data.accessToken;
@@ -71,10 +71,10 @@ const NewsPage = () => {
       setIsLoading(false);
       setIsFetching(false);
     }
-  };
+  }, [page]);
   useEffect(() => {
     fetchPosts();
-  }, [page]);
+  }, [fetchPosts]);
 
   const openModal = (news: News) => {
     setSelectedNews(news);
